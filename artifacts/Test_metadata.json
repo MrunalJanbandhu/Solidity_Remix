@@ -1,0 +1,84 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_exampleString",
+						"type": "string"
+					}
+				],
+				"name": "calldataTest",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_exampleString",
+						"type": "string"
+					}
+				],
+				"name": "memoryTest",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/test.sol": "Test"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/test.sol": {
+			"keccak256": "0x7c7b9379483b232fca3c9e9999bf3b51d1944e38ac2f2ddc62bc827387631d60",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://9ceb3d752181adb935dcf340c48859eabee439b040985ae6bc75c6c49c4f641b",
+				"dweb:/ipfs/QmXv8aSE888yFce1g5oNCMUhfBnUTpCYmNfEQXa9EC3mjU"
+			]
+		}
+	},
+	"version": 1
+}
