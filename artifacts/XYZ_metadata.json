@@ -104,11 +104,11 @@
 	},
 	"sources": {
 		"Sol_by_Example/Basics/functions.sol": {
-			"keccak256": "0xa99ba414f12fe41795de8bf9222ed9c994d4ee129d3772a82ba5576de0604106",
+			"keccak256": "0x5b608543a59b8df157cc9f2e857f00aab33ce2e47c48302eb46c6e06d5e5686e",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://429318f23a342169375974c9d2d6b0279f743f06e9b12ae378800dacdfbe27be",
-				"dweb:/ipfs/QmP1ZMgnHWP21Skt2gMFuAfvMLrVXDtUts7jB8nr2SFkuX"
+				"bzz-raw://810489fdf791a203b27482964d84845d37f167ac1fd916b49be21ceb0044da16",
+				"dweb:/ipfs/Qma5XEgR4VzGo3HKxTLeAe4q1wNmXuzYXhAV3Hcvyq6Swm"
 			]
 		}
 	},

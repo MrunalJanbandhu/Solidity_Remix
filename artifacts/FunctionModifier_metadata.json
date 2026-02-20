@@ -1,0 +1,124 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_newOwner",
+						"type": "address"
+					}
+				],
+				"name": "changeOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_i",
+						"type": "uint256"
+					}
+				],
+				"name": "decrement",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "locked",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "x",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/functionModifier.sol": "FunctionModifier"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/functionModifier.sol": {
+			"keccak256": "0x1c384e4bfba30b4d051db29a78530c6dd839a47ff0df7c79b886e3c881a59473",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://01ed60b6f00366fb80d09a24b5c7771b1e12eebbaf9aee44e27a8a444d7256f5",
+				"dweb:/ipfs/QmQ1XUVZeRd7vsFTaatjSjCfQnYSE8sauzAm1ihuEE6buu"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x42ce9ec1a8945fa4054ed645adb362eb455e10e886d9e285723fedd11e326130",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fbc1ed17e7e10c077ffc7cfd55d1e122da73b2f94f5ebc194ea828c06a9406f3",
+				"dweb:/ipfs/QmYHmFcCnUz8aQKfwPpNJXyCxa8ffUqMHezebN4zpAUznc"
+			]
+		}
+	},
+	"version": 1
+}
