@@ -69,6 +69,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "consolelog",
+				"outputs": [],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -134,11 +141,19 @@
 	},
 	"sources": {
 		"Sol_by_Example/Basics/eventsAdvanced.sol": {
-			"keccak256": "0xc59d6c8a265d9203703e00816df9d41e9e29beda9539ec2228570a2c96443651",
+			"keccak256": "0x75e8cb2bfb40a842cff11c407462e23b160e0ef712e143682156ef6fb559472a",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://33640ce7a4eb69848c8ff05915f374fe11b8e65cc482aee5944044200578ec83",
-				"dweb:/ipfs/QmZBt5X8je7qGCdvu17vayhrLpBtdNbpmG2snwsUUcjzN6"
+				"bzz-raw://f9cbbb7f3dabd17ef6b4e8a3a3b21cac7cb680b4d82dff73855aac96f787615c",
+				"dweb:/ipfs/QmX12QFYB3vTrVgXi5vXkyVAV2AR2g2GvqwkkjkWVZKHbW"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x42ce9ec1a8945fa4054ed645adb362eb455e10e886d9e285723fedd11e326130",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fbc1ed17e7e10c077ffc7cfd55d1e122da73b2f94f5ebc194ea828c06a9406f3",
+				"dweb:/ipfs/QmYHmFcCnUz8aQKfwPpNJXyCxa8ffUqMHezebN4zpAUznc"
 			]
 		}
 	},

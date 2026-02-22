@@ -1,0 +1,77 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "getName",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/shawdow_inherited_state_var.sol": "C"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/shawdow_inherited_state_var.sol": {
+			"keccak256": "0x5fdd79d32f80df14677d59dc955890ea0031619185cc65616a0bce0e4638bdc9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6187157d3dfb551fa7c73146e42a10e33152b69cd0fa8b5e68e9a3287025871d",
+				"dweb:/ipfs/QmYCQK9w4mZrQZJ7inESZn7nJQK8b9kmLjx73sNroBR77S"
+			]
+		}
+	},
+	"version": 1
+}
