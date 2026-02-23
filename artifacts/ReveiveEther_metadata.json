@@ -1,0 +1,67 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [],
+				"name": "getBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/24.send_tranfer_call_ether.sol": "ReveiveEther"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/24.send_tranfer_call_ether.sol": {
+			"keccak256": "0xc722ca70311a2303bc98a8e485aca1102a3da19ce1b5c6d001fbbc69f39cc71b",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://608f3d5ab04e166fcd6dc9a567775abef0771bdbe92cecd0d6402364a58fb7ea",
+				"dweb:/ipfs/QmRYhk1hqJ3J2TvF58G3KNxSaEHbeqirmu3Fo2YijzcrDx"
+			]
+		}
+	},
+	"version": 1
+}

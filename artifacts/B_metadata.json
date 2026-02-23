@@ -6,16 +6,30 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "foo",
-				"outputs": [
+				"anonymous": false,
+				"inputs": [
 					{
+						"indexed": false,
 						"internalType": "string",
-						"name": "",
+						"name": "message",
 						"type": "string"
 					}
 				],
-				"stateMutability": "pure",
+				"name": "Log",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "bar",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "foo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -32,7 +46,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/inheritance.sol": "B"
+			"Sol_by_Example/Basics/20.calling_parent_contacts.sol": "B"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -46,12 +60,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/inheritance.sol": {
-			"keccak256": "0xa24f1840abefe2deed7994fd3efb35eba049c84b5b9e7073c3227a07369ba9ad",
+		"Sol_by_Example/Basics/20.calling_parent_contacts.sol": {
+			"keccak256": "0xe8e1a7990ed3c3331524601b03f779a0aa034819458b314077a417dd34a09958",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c9c7f462c701024f413316a4f7b5ae593f5088e847d31963cc5d67a49aae5dbb",
-				"dweb:/ipfs/QmXfM3gH4Bw2aQ8UGJ5VV7YpmLqe9Pi5dV1uH6o8pbjJxW"
+				"bzz-raw://1b5a3379920ab557049c15b52e4c6658c785450d090c3f242e953b6b99cb6596",
+				"dweb:/ipfs/QmZabZZAfy5LBJzpdDAwQWuvzbqL5QfMV76icrF76AoHpz"
 			]
 		}
 	},

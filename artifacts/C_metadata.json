@@ -6,34 +6,30 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
-				"inputs": [],
-				"name": "getName",
-				"outputs": [
+				"anonymous": false,
+				"inputs": [
 					{
+						"indexed": false,
 						"internalType": "string",
-						"name": "",
+						"name": "message",
 						"type": "string"
 					}
 				],
-				"stateMutability": "view",
+				"name": "Log",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "bar",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "name",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
-					}
-				],
-				"stateMutability": "view",
+				"name": "foo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -50,7 +46,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/shawdow_inherited_state_var.sol": "C"
+			"Sol_by_Example/Basics/20.calling_parent_contacts.sol": "C"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -64,12 +60,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/shawdow_inherited_state_var.sol": {
-			"keccak256": "0x5fdd79d32f80df14677d59dc955890ea0031619185cc65616a0bce0e4638bdc9",
+		"Sol_by_Example/Basics/20.calling_parent_contacts.sol": {
+			"keccak256": "0xe8e1a7990ed3c3331524601b03f779a0aa034819458b314077a417dd34a09958",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6187157d3dfb551fa7c73146e42a10e33152b69cd0fa8b5e68e9a3287025871d",
-				"dweb:/ipfs/QmYCQK9w4mZrQZJ7inESZn7nJQK8b9kmLjx73sNroBR77S"
+				"bzz-raw://1b5a3379920ab557049c15b52e4c6658c785450d090c3f242e953b6b99cb6596",
+				"dweb:/ipfs/QmZabZZAfy5LBJzpdDAwQWuvzbqL5QfMV76icrF76AoHpz"
 			]
 		}
 	},
