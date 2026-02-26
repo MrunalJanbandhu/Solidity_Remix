@@ -6,30 +6,55 @@
 	"output": {
 		"abi": [
 			{
-				"anonymous": false,
-				"inputs": [
+				"inputs": [],
+				"name": "num",
+				"outputs": [
 					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "message",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
-				"name": "Log",
-				"type": "event"
-			},
-			{
-				"inputs": [],
-				"name": "bar",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "foo",
+				"name": "sender",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_num",
+						"type": "uint256"
+					}
+				],
+				"name": "setVars",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "value",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -46,7 +71,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/20.calling_parent_contacts.sol": "B"
+			"Sol_by_Example/Basics/27.delegat3eCall.sol": "B"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -60,12 +85,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/20.calling_parent_contacts.sol": {
-			"keccak256": "0xe8e1a7990ed3c3331524601b03f779a0aa034819458b314077a417dd34a09958",
+		"Sol_by_Example/Basics/27.delegat3eCall.sol": {
+			"keccak256": "0xfa1a5a8f39145bd3c9646d53d27b768b5d3f48abb86fde119373cfd6eb496877",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1b5a3379920ab557049c15b52e4c6658c785450d090c3f242e953b6b99cb6596",
-				"dweb:/ipfs/QmZabZZAfy5LBJzpdDAwQWuvzbqL5QfMV76icrF76AoHpz"
+				"bzz-raw://e545f8a5848e7bfd04657373193e2a4778cf70af2bc30b0c57fe8b81fea527d7",
+				"dweb:/ipfs/QmcKKnhXfLXwfhcVZwA8tCRHCTSKy3Xrp3TKakPn7uGZ1b"
 			]
 		}
 	},

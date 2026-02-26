@@ -10,26 +10,112 @@
 				"inputs": [
 					{
 						"indexed": false,
-						"internalType": "string",
-						"name": "message",
-						"type": "string"
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
 					}
 				],
-				"name": "Log",
+				"name": "CallResponse",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "DelegateResponse",
 				"type": "event"
 			},
 			{
 				"inputs": [],
-				"name": "bar",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"name": "num",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [],
-				"name": "foo",
+				"name": "sender",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_contract",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_num",
+						"type": "uint256"
+					}
+				],
+				"name": "setVarsCall",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_contract",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_num",
+						"type": "uint256"
+					}
+				],
+				"name": "setVarsDelegateCall",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "value",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -46,7 +132,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/20.calling_parent_contacts.sol": "A"
+			"Sol_by_Example/Basics/27.delegat3eCall.sol": "A"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -60,12 +146,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/20.calling_parent_contacts.sol": {
-			"keccak256": "0xe8e1a7990ed3c3331524601b03f779a0aa034819458b314077a417dd34a09958",
+		"Sol_by_Example/Basics/27.delegat3eCall.sol": {
+			"keccak256": "0xfa1a5a8f39145bd3c9646d53d27b768b5d3f48abb86fde119373cfd6eb496877",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1b5a3379920ab557049c15b52e4c6658c785450d090c3f242e953b6b99cb6596",
-				"dweb:/ipfs/QmZabZZAfy5LBJzpdDAwQWuvzbqL5QfMV76icrF76AoHpz"
+				"bzz-raw://e545f8a5848e7bfd04657373193e2a4778cf70af2bc30b0c57fe8b81fea527d7",
+				"dweb:/ipfs/QmcKKnhXfLXwfhcVZwA8tCRHCTSKy3Xrp3TKakPn7uGZ1b"
 			]
 		}
 	},
