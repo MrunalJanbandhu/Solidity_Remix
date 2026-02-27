@@ -71,7 +71,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/27.delegat3eCall.sol": "B"
+			"Sol_by_Example/Basics/27.delegateCall.sol": "B"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -85,7 +85,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/27.delegat3eCall.sol": {
+		"Sol_by_Example/Basics/27.delegateCall.sol": {
 			"keccak256": "0xfa1a5a8f39145bd3c9646d53d27b768b5d3f48abb86fde119373cfd6eb496877",
 			"license": "MIT",
 			"urls": [
