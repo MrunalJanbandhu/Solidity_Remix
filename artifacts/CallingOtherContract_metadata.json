@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/29.callingothercontract.sol": "CallingOtherContract"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/29.callingothercontract.sol": {
+			"keccak256": "0x4787296a88b62a340350975640b88c5b5b97b8e47e3537c28ef70a7e45993a37",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://67c93a75fe9872cb6e5ededcf49581d37fb28c99b8e08cea56720c1f25e098ea",
+				"dweb:/ipfs/QmarQ69jpGJxoM2vzFu8Aj1Fs9LfkuDQWDfMeczFRGTjPh"
+			]
+		}
+	},
+	"version": 1
+}
