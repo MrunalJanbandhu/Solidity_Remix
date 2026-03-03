@@ -1,0 +1,64 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "transfer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/34.abiencode.sol": "Token"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/34.abiencode.sol": {
+			"keccak256": "0x5a4e826bf3cb834a4ab1c79d5be4597c7388f0bab294a38781c59ab1ee644817",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://81e25d066855d15fe8b5e65f435897bba168770d20882108a0ea372ac2906566",
+				"dweb:/ipfs/QmRvrenY5AuF1XCrUuAmAopQm5Q1JMvWnH1ajD3SBZFkaE"
+			]
+		}
+	},
+	"version": 1
+}

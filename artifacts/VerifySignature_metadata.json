@@ -1,0 +1,196 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_messageHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "getEthSignedMessageHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_message",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_nonce",
+						"type": "uint256"
+					}
+				],
+				"name": "getMessageHash",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "_ethSignedMessageHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_signature",
+						"type": "bytes"
+					}
+				],
+				"name": "recoverSigner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "sig",
+						"type": "bytes"
+					}
+				],
+				"name": "splitSignature",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "r",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "s",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint8",
+						"name": "v",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_signer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_message",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_nonce",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "signature",
+						"type": "bytes"
+					}
+				],
+				"name": "verify",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/37.VerifyingSignature.sol": "VerifySignature"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/37.VerifyingSignature.sol": {
+			"keccak256": "0xa8cd0d9f8cb23887ad539b66a35d65dec6a19ae7eebc1ba7703f0bfead322b3f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://242f8e94f4a412abfd8241726cf3ee49a7c467b06faf16398efdbb1eaccb2266",
+				"dweb:/ipfs/QmNtoofxaApYHH8DcHbrrqtjk1ebBGTCh3MA2TspppKoTL"
+			]
+		}
+	},
+	"version": 1
+}

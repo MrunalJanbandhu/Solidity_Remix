@@ -1,0 +1,138 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "decode",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "arr",
+						"type": "uint256[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256[2]",
+								"name": "nums",
+								"type": "uint256[2]"
+							}
+						],
+						"internalType": "struct AbiDecode.MyStruct",
+						"name": "myStruct",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "addr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "arr",
+						"type": "uint256[]"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256[2]",
+								"name": "nums",
+								"type": "uint256[2]"
+							}
+						],
+						"internalType": "struct AbiDecode.MyStruct",
+						"name": "myStruct",
+						"type": "tuple"
+					}
+				],
+				"name": "encode",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/35.abidecode.sol": "AbiDecode"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/35.abidecode.sol": {
+			"keccak256": "0x8ac838047144f1c2fa9805b9d14960dbdb82677b01f7ee07334edfa32ed0e417",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://156fba1e7b9981fffc42bb9a1bcd1fb20e3cb121ee3f05cf9c4cc0c364a03b73",
+				"dweb:/ipfs/Qma2NmmFSvdLuUqqiNgWTgtguwswCQYA2FYSww8RszAQEn"
+			]
+		}
+	},
+	"version": 1
+}
