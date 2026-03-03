@@ -6,15 +6,15 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "foo",
-				"outputs": [
+				"inputs": [
 					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
 					}
 				],
+				"name": "yul_revert",
+				"outputs": [],
 				"stateMutability": "pure",
 				"type": "function"
 			}
@@ -32,7 +32,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/18.inheritance.sol": "D"
+			"Sol_by_Example/Basics/Assembly/04.AssemblyError.sol": "AssemblyError"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -46,12 +46,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/18.inheritance.sol": {
-			"keccak256": "0xa24f1840abefe2deed7994fd3efb35eba049c84b5b9e7073c3227a07369ba9ad",
+		"Sol_by_Example/Basics/Assembly/04.AssemblyError.sol": {
+			"keccak256": "0x49f137156d13744fd4ffcf36f5a1a9dc7e1ede2d7f97cca0b28ef2b3763476a4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c9c7f462c701024f413316a4f7b5ae593f5088e847d31963cc5d67a49aae5dbb",
-				"dweb:/ipfs/QmXfM3gH4Bw2aQ8UGJ5VV7YpmLqe9Pi5dV1uH6o8pbjJxW"
+				"bzz-raw://fb5462aaafc126ef6ef7500109e7ee462fa809355151d03adbf6e8f081bd9c85",
+				"dweb:/ipfs/QmViEy9434YSioutdW2n8VRsPk22n69X3PoV7iU4qFkkBP"
 			]
 		}
 	},

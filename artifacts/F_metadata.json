@@ -32,7 +32,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/inheritance.sol": "F"
+			"Sol_by_Example/Basics/18.inheritance.sol": "F"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -46,7 +46,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/inheritance.sol": {
+		"Sol_by_Example/Basics/18.inheritance.sol": {
 			"keccak256": "0xa24f1840abefe2deed7994fd3efb35eba049c84b5b9e7073c3227a07369ba9ad",
 			"license": "MIT",
 			"urls": [

@@ -6,13 +6,19 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
-				"name": "foo",
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "x",
+						"type": "uint256"
+					}
+				],
+				"name": "mostSignificantBit",
 				"outputs": [
 					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "msb",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "pure",
@@ -32,7 +38,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/18.inheritance.sol": "D"
+			"Sol_by_Example/Basics/39.BitwiseOperations.sol": "MostSignificantBitAssembly"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -46,12 +52,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/18.inheritance.sol": {
-			"keccak256": "0xa24f1840abefe2deed7994fd3efb35eba049c84b5b9e7073c3227a07369ba9ad",
+		"Sol_by_Example/Basics/39.BitwiseOperations.sol": {
+			"keccak256": "0xfce895a6340158f5aaa3783114a3093cbda602cab8c88c7357e3a3cc5adbafa6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c9c7f462c701024f413316a4f7b5ae593f5088e847d31963cc5d67a49aae5dbb",
-				"dweb:/ipfs/QmXfM3gH4Bw2aQ8UGJ5VV7YpmLqe9Pi5dV1uH6o8pbjJxW"
+				"bzz-raw://97399b9bf46c330b79689a9f550fb6a686a724a5890f2ace39010a9cf7287844",
+				"dweb:/ipfs/QmQkA7Pmnq6wjwPuydzCU9KvXxY7gTx4yYc4zVu6nqrySh"
 			]
 		}
 	},

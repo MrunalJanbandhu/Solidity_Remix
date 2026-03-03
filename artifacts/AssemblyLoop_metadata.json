@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "yul_for_loop",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "z",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "yul_while_loop",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "z",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/Assembly/03.AssemblyLoop.sol": "AssemblyLoop"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/Assembly/03.AssemblyLoop.sol": {
+			"keccak256": "0x819b74f5de200280bb6bcd98a9f9e576139e7cb72f7e182250f67388b39b6fcd",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://77a4bb3174b9688897276bb8158c103b94e9ac20e8508686440c54ba77fab07f",
+				"dweb:/ipfs/QmTVJpQ8oEmygjSgZpLUs3ZVgdL9Y99cvCT6SZ3eYksLrv"
+			]
+		}
+	},
+	"version": 1
+}

@@ -7,12 +7,12 @@
 		"abi": [
 			{
 				"inputs": [],
-				"name": "foo",
+				"name": "yul_let",
 				"outputs": [
 					{
-						"internalType": "string",
-						"name": "",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "z",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "pure",
@@ -32,7 +32,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/18.inheritance.sol": "D"
+			"Sol_by_Example/Basics/Assembly/01.AssemblyVaribale.sol": "AssemblyVariable"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -46,12 +46,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/18.inheritance.sol": {
-			"keccak256": "0xa24f1840abefe2deed7994fd3efb35eba049c84b5b9e7073c3227a07369ba9ad",
+		"Sol_by_Example/Basics/Assembly/01.AssemblyVaribale.sol": {
+			"keccak256": "0xd131512481fc9283de40342a0e6b54db373179512e47fc1b445aad0f0234fb7b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c9c7f462c701024f413316a4f7b5ae593f5088e847d31963cc5d67a49aae5dbb",
-				"dweb:/ipfs/QmXfM3gH4Bw2aQ8UGJ5VV7YpmLqe9Pi5dV1uH6o8pbjJxW"
+				"bzz-raw://d24c7dc71b9860e88eb02e07b11a5577a28b6c4c1f181ef0361e7d1b925704cb",
+				"dweb:/ipfs/QmbivGgJDLLfWRRqg8GYd2DnGA6kRxprTuCssAZefC73nb"
 			]
 		}
 	},

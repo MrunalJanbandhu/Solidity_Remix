@@ -6,116 +6,16 @@
 	"output": {
 		"abi": [
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "bool",
-						"name": "success",
-						"type": "bool"
-					},
-					{
-						"indexed": false,
-						"internalType": "bytes",
-						"name": "data",
-						"type": "bytes"
-					}
-				],
-				"name": "CallResponse",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "bool",
-						"name": "success",
-						"type": "bool"
-					},
-					{
-						"indexed": false,
-						"internalType": "bytes",
-						"name": "data",
-						"type": "bytes"
-					}
-				],
-				"name": "DelegateResponse",
-				"type": "event"
-			},
-			{
 				"inputs": [],
-				"name": "num",
+				"name": "foo",
 				"outputs": [
 					{
-						"internalType": "uint256",
+						"internalType": "string",
 						"name": "",
-						"type": "uint256"
+						"type": "string"
 					}
 				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "sender",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_contract",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_num",
-						"type": "uint256"
-					}
-				],
-				"name": "setVarsCall",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "_contract",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "_num",
-						"type": "uint256"
-					}
-				],
-				"name": "setVarsDelegateCall",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "value",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
+				"stateMutability": "pure",
 				"type": "function"
 			}
 		],
@@ -132,7 +32,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/27.delegateCall.sol": "A"
+			"Sol_by_Example/Basics/18.inheritance.sol": "A"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -146,12 +46,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/27.delegateCall.sol": {
-			"keccak256": "0xfa1a5a8f39145bd3c9646d53d27b768b5d3f48abb86fde119373cfd6eb496877",
+		"Sol_by_Example/Basics/18.inheritance.sol": {
+			"keccak256": "0xa24f1840abefe2deed7994fd3efb35eba049c84b5b9e7073c3227a07369ba9ad",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e545f8a5848e7bfd04657373193e2a4778cf70af2bc30b0c57fe8b81fea527d7",
-				"dweb:/ipfs/QmcKKnhXfLXwfhcVZwA8tCRHCTSKy3Xrp3TKakPn7uGZ1b"
+				"bzz-raw://c9c7f462c701024f413316a4f7b5ae593f5088e847d31963cc5d67a49aae5dbb",
+				"dweb:/ipfs/QmXfM3gH4Bw2aQ8UGJ5VV7YpmLqe9Pi5dV1uH6o8pbjJxW"
 			]
 		}
 	},
