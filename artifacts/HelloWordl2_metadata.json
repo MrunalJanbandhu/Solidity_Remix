@@ -1,0 +1,67 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "greetFunc",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"Sol_by_Example/Basics/01.helloworld.sol": "HelloWordl2"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Sol_by_Example/Basics/01.helloworld.sol": {
+			"keccak256": "0x4f6cee76db78e8cab188ee68d44dafec8df94df56164767f6aa70b8fb60feeb4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f2a3793988d4c1ded3b2694c560cc836b38917d12bac9d1964b9a367b1546e9e",
+				"dweb:/ipfs/QmNYDNHxs5jNdQeGcgik7ZViDWr6etaicWbSFFDDfYafKM"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x42ce9ec1a8945fa4054ed645adb362eb455e10e886d9e285723fedd11e326130",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fbc1ed17e7e10c077ffc7cfd55d1e122da73b2f94f5ebc194ea828c06a9406f3",
+				"dweb:/ipfs/QmYHmFcCnUz8aQKfwPpNJXyCxa8ffUqMHezebN4zpAUznc"
+			]
+		}
+	},
+	"version": 1
+}

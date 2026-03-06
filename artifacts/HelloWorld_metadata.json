@@ -47,11 +47,19 @@
 	},
 	"sources": {
 		"Sol_by_Example/Basics/01.helloworld.sol": {
-			"keccak256": "0x099ab83d115002c0ae47881348a14872080609defea8a37728cebfff1731768c",
+			"keccak256": "0x4f6cee76db78e8cab188ee68d44dafec8df94df56164767f6aa70b8fb60feeb4",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1b06799e3c60f991f898438cd338336d9f8ee045a57102f6d8546e9b435a0599",
-				"dweb:/ipfs/QmcVCKEysGvpnWyfJmpVPqiHmj1i4pkjBa3yGehGgnR2V3"
+				"bzz-raw://f2a3793988d4c1ded3b2694c560cc836b38917d12bac9d1964b9a367b1546e9e",
+				"dweb:/ipfs/QmNYDNHxs5jNdQeGcgik7ZViDWr6etaicWbSFFDDfYafKM"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0x42ce9ec1a8945fa4054ed645adb362eb455e10e886d9e285723fedd11e326130",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://fbc1ed17e7e10c077ffc7cfd55d1e122da73b2f94f5ebc194ea828c06a9406f3",
+				"dweb:/ipfs/QmYHmFcCnUz8aQKfwPpNJXyCxa8ffUqMHezebN4zpAUznc"
 			]
 		}
 	},

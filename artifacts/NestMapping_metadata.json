@@ -108,7 +108,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/mapping.sol": "NestMapping"
+			"Sol_by_Example/Basics/05.mapping.sol": "NestMapping"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -122,12 +122,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/mapping.sol": {
-			"keccak256": "0xc6dfea925c7533d59c19430c0d5c7c33564ac0460f9447605aa98d601c4c34ba",
+		"Sol_by_Example/Basics/05.mapping.sol": {
+			"keccak256": "0xf414a0213828f2dea6e0c454813e6b758301ba501b60222d76e97112a05b771f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3ddc419c8ecaff8edfc61c2903aada2d628a2dc95c93cf0c43f25de2b1d4efbd",
-				"dweb:/ipfs/QmcBKUC3LDxH9p2z2HwGbDEgng1XUjavyFqVbomskSVTUH"
+				"bzz-raw://f1b2633f0de86eec23ca582d37aee3fc12528e7174092a0148fdfbe42ab422c2",
+				"dweb:/ipfs/QmQajkmgjLNkhZ2NbrYwaoaJMytozGERBcxCoxTeArax1i"
 			]
 		}
 	},

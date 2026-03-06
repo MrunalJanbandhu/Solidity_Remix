@@ -8,6 +8,8 @@ pragma solidity ^0.8.28;
 contract Mappings {
 
     mapping ( address => uint ) public myMapping;
+    // 0x617F2E2fD72FD9D5503197092aC168c91465E7f2 [2] = true
+    // 0x617F2E2fD72FD9D5503197092aC168c91sd6E7f2 - 3
 
     function get(address _address) public view returns(uint) {
         // if value not set returns default value
@@ -44,3 +46,5 @@ contract NestMapping {
     }
 
 }
+
+// name = uint

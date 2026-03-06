@@ -5,21 +5,20 @@ pragma solidity ^0.8.28;
 
 contract Counter {
     // uint256 count;
-    int256 count;
+    int256 count; // state var defualt = 0
 
     function inc() public {
-        count += 1;
+        count = count + 1;
     }
 
     function dec() public {
-        require( count > 0, "count cannot be negative");
+        // require( count > 0, "count cannot be negative");
         // console.log("no revert");
         count -= 1;
     }
 
     function getCount() public view returns(int256) {
     // function getCount() public view returns(uint256) {
-        
         return count;
     }
 }
