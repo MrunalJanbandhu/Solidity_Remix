@@ -2,6 +2,23 @@
 pragma solidity ^0.8.28;
 
 
+/* Deleting a struct which contains a mapping is dangerous
+In Solidity, deleting a struct that contains a mapping—or deleting a nested mapping itself—does not actually 
+erase the underlying data stored in the nested mapping, resulting in "ghost data".
+
+
+struct Inner {
+    mapping(uint256 => uint256) map;
+}
+mapping(address => Inner) public nested;
+
+function deleteData(address _addr) public {
+    // This deletes `nested[_addr]` but NOT the `map` inside `Inner`
+    delete nested[_addr]; 
+}
+
+*/
+
 // mapping(keyType => valueType) -- mappings are not iterable  
 // keyTyype built-in valye type, byte, string or contract -- valueType can be any type another mapping or array
 

@@ -103,11 +103,11 @@
 	},
 	"sources": {
 		"Sol_by_Example/Basics/05.mapping.sol": {
-			"keccak256": "0xf414a0213828f2dea6e0c454813e6b758301ba501b60222d76e97112a05b771f",
+			"keccak256": "0xacb5420f22a37810713deebd717c6fcea9075cba45937465a8648360510a60b3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f1b2633f0de86eec23ca582d37aee3fc12528e7174092a0148fdfbe42ab422c2",
-				"dweb:/ipfs/QmQajkmgjLNkhZ2NbrYwaoaJMytozGERBcxCoxTeArax1i"
+				"bzz-raw://7733e3ef699edca863ebc6247173d7c95c3c9c85ad180ce3da427394de61c57e",
+				"dweb:/ipfs/QmdZrmGTqpZk37a8N2wuzfw9nMpzPoQdFrsAK9ud8ttVdo"
 			]
 		}
 	},

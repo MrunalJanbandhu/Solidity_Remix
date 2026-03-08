@@ -1,0 +1,1006 @@
+{
+	"compiler": {
+		"version": "0.8.31+commit.fd3a2265"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "_treasury",
+						"type": "address"
+					},
+					{
+						"internalType": "uint16",
+						"name": "_feeBps",
+						"type": "uint16"
+					},
+					{
+						"internalType": "address",
+						"name": "_arbitrator",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "bps",
+						"type": "uint16"
+					},
+					{
+						"internalType": "uint16",
+						"name": "max",
+						"type": "uint16"
+					}
+				],
+				"name": "FeeTooHigh",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "sent",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "required",
+						"type": "uint256"
+					}
+				],
+				"name": "IncorrectPayment",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "InvalidRole",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum EscrowMarketplace.OrderState",
+						"name": "current",
+						"type": "uint8"
+					},
+					{
+						"internalType": "enum EscrowMarketplace.OrderState",
+						"name": "expected",
+						"type": "uint8"
+					}
+				],
+				"name": "InvalidState",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					}
+				],
+				"name": "NotBuyer",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					}
+				],
+				"name": "NotSeller",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ReentrantCall",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "SameAddress",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "TransferFailed",
+				"type": "error"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "caller",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "role",
+						"type": "uint8"
+					}
+				],
+				"name": "Unauthorized",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "ZeroAddress",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldArbitrator",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newArbitrator",
+						"type": "address"
+					}
+				],
+				"name": "ArbitratorUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "Cancelled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "openedBy",
+						"type": "address"
+					}
+				],
+				"name": "DisputeOpened",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "releasedToSeller",
+						"type": "bool"
+					}
+				],
+				"name": "DisputeResolved",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint16",
+						"name": "oldBps",
+						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint16",
+						"name": "newBps",
+						"type": "uint16"
+					}
+				],
+				"name": "FeeUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "payoutToSeller",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "fee",
+						"type": "uint256"
+					}
+				],
+				"name": "OrderCompleted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "detailsHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "OrderCreated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "OrderFunded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					}
+				],
+				"name": "OrderShipped",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Refunded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "role",
+						"type": "uint8"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "by",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "role",
+						"type": "uint8"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "by",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "oldTreasury",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newTreasury",
+						"type": "address"
+					}
+				],
+				"name": "TreasuryUpdated",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "MAX_FEE_BPS",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ROLE_ADMIN",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ROLE_MEDIATOR",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "ROLE_SELLER",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "arbitrator",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "calculateFee",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "cancelUnfunded",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "confirmReceived",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "detailsHash",
+						"type": "bytes32"
+					}
+				],
+				"name": "createOrder",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "feeBps",
+				"outputs": [
+					{
+						"internalType": "uint16",
+						"name": "",
+						"type": "uint16"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "fundOrder",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "getOrder",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "buyer",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "seller",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "amount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "createdAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "bytes32",
+								"name": "detailsHash",
+								"type": "bytes32"
+							},
+							{
+								"internalType": "enum EscrowMarketplace.OrderState",
+								"name": "state",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct EscrowMarketplace.Order",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "role",
+						"type": "uint8"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "role",
+						"type": "uint8"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "markShipped",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nextOrderId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "openDispute",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "orders",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "buyer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "seller",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "detailsHash",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "enum EscrowMarketplace.OrderState",
+						"name": "state",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					}
+				],
+				"name": "refundBuyer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "releaseToSeller",
+						"type": "bool"
+					}
+				],
+				"name": "resolveDispute",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "role",
+						"type": "uint8"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "treasury",
+				"outputs": [
+					{
+						"internalType": "address payable",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newArbitrator",
+						"type": "address"
+					}
+				],
+				"name": "updateArbitrator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint16",
+						"name": "newBps",
+						"type": "uint16"
+					}
+				],
+				"name": "updateFee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address payable",
+						"name": "newTreasury",
+						"type": "address"
+					}
+				],
+				"name": "updateTreasury",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"params": {
+						"_arbitrator": "Optional external arbitrator (pass address(0) to skip)",
+						"_feeBps": "Initial fee in basis points (≤ 500)",
+						"_treasury": "Address of deployed Treasury contract"
+					}
+				},
+				"createOrder(address,bytes32)": {
+					"params": {
+						"detailsHash": "keccak256 of order metadata stored off-chain",
+						"seller": "Seller's address (must hold ROLE_SELLER)"
+					},
+					"returns": {
+						"orderId": "    ID of the newly created order"
+					}
+				},
+				"fundOrder(uint256)": {
+					"details": "msg.value becomes the locked escrow amount.         Transitions: Created → Funded"
+				}
+			},
+			"stateVariables": {
+				"_locked": {
+					"details": "Manual reentrancy lock"
+				}
+			},
+			"title": "EscrowMarketplace",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"arbitrator()": {
+					"notice": "Optional external arbitrator (can be address(0))"
+				},
+				"calculateFee(uint256)": {
+					"notice": "Calculate the fee for a given amount using current feeBps"
+				},
+				"cancelUnfunded(uint256)": {
+					"notice": "Buyer cancels a Created (unfunded) order.         Transitions: Created → Cancelled"
+				},
+				"confirmReceived(uint256)": {
+					"notice": "Buyer confirms delivery — releases funds to seller minus fee.         Transitions: Shipped → Completed"
+				},
+				"createOrder(address,bytes32)": {
+					"notice": "Create a new order with an off-chain metadata hash."
+				},
+				"feeBps()": {
+					"notice": "Fee in basis points (1 BPS = 0.01%).  Default 100 BPS = 1%"
+				},
+				"fundOrder(uint256)": {
+					"notice": "Fund a Created order with the exact agreed ETH amount."
+				},
+				"getOrder(uint256)": {
+					"notice": "Return full order data"
+				},
+				"grantRole(address,uint8)": {
+					"notice": "Grant a role to an account (admin only)"
+				},
+				"hasRole(address,uint8)": {
+					"notice": "Check whether `account` holds `role`"
+				},
+				"markShipped(uint256)": {
+					"notice": "Seller marks the order as shipped.         Transitions: Funded → Shipped"
+				},
+				"openDispute(uint256)": {
+					"notice": "Buyer opens a dispute (Funded or Shipped).         Transitions: Funded|Shipped → Disputed"
+				},
+				"refundBuyer(uint256)": {
+					"notice": "Direct refund by mediator/admin (e.g. seller agrees pre-shipping).         Order must be in Disputed state.         Alias for resolveDispute(orderId, false) — kept for explicit interface."
+				},
+				"resolveDispute(uint256,bool)": {
+					"notice": "Resolve a disputed order.         `releaseToSeller = true`  → Completed  (seller gets paid minus fee)         `releaseToSeller = false` → Refunded   (buyer gets full amount back)         Transitions: Disputed → Completed | Refunded"
+				},
+				"revokeRole(address,uint8)": {
+					"notice": "Revoke a role from an account (admin only)"
+				},
+				"treasury()": {
+					"notice": "Treasury contract that receives marketplace fees"
+				},
+				"updateArbitrator(address)": {
+					"notice": "Update the arbitrator address (address(0) to disable)"
+				},
+				"updateFee(uint16)": {
+					"notice": "Update the marketplace fee in basis points (max 500 = 5%)"
+				},
+				"updateTreasury(address)": {
+					"notice": "Update the treasury address"
+				}
+			},
+			"notice": "Multi-party escrow marketplace with strict state-machine order lifecycle.         Inherits AccessManager for role-based access control.         Fees are forwarded to an external Treasury contract.         Reentrancy guard implemented manually (no OpenZeppelin).",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"new/MarketplaceEscrow_Claude/EscrowMarketplace.sol": "EscrowMarketplace"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"new/MarketplaceEscrow_Claude/AccessManager.sol": {
+			"keccak256": "0x52f7c76275aff1c7049c81816181b91034d063eaff07ba49bf0f38f8a3ee9e53",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://210ee1aba2a6fdcb6157ba1e5e4b9b2170df6cc81762b679cda66bfa62e07d26",
+				"dweb:/ipfs/QmfTMsskusHH68eqgM17y1rC9RvZM6JKZwMyt54ocjZgnx"
+			]
+		},
+		"new/MarketplaceEscrow_Claude/EscrowMarketplace.sol": {
+			"keccak256": "0x1110977a23b5d72cdb21f5999d94e8fc6104a67ba61500f0b6915e46e2f0bcbc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://936f4319d89d1454b918433bdfef1da3628fbf9e0598b180d258426324a4ed05",
+				"dweb:/ipfs/QmPBmon2grV6dGNmhWoVLqWAb3QEZextzRjtHKAZd2f5kH"
+			]
+		},
+		"new/MarketplaceEscrow_Claude/IArbitrator.sol": {
+			"keccak256": "0x289e70a583a9a46c43950db00e8951ba1e3ce93b43287ce0dc3526f1f5a661a0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d023adc385eb57bf91d778b21f408859e5c97f7f9a74d1e491850247bd93027b",
+				"dweb:/ipfs/QmR6Ea45k2QQFQe7r4fy24ozk8odd5ZuANQwW52FpfhK41"
+			]
+		}
+	},
+	"version": 1
+}
