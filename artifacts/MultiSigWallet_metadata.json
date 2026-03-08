@@ -52,7 +52,7 @@
 					{
 						"indexed": false,
 						"internalType": "uint256",
-						"name": "amount",
+						"name": "value",
 						"type": "uint256"
 					},
 					{
@@ -414,11 +414,11 @@
 	},
 	"sources": {
 		"Sol_by_Example/Applications/02.MultiSigWallet.sol": {
-			"keccak256": "0xb15ef1b1cf175f792815d94d2a9aa0da545ff125d540a6386937f2d6500c077f",
+			"keccak256": "0x0f099f370c2efa5ac7aaa6e24c69964c7d98ee144ad85cfa33968a75bc944176",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2a23203211f4a249c9f80ffd757aa9ec2007a7dbdf35a722fdb8404f09bd412f",
-				"dweb:/ipfs/QmbTbSNfs71XLg6mQwHdcTsfVZxndED2ziYpMb8uVAM3Ki"
+				"bzz-raw://3c47b2af2c10e92670f1772793f935771e2d79a3cf3fec64381cad2d7a6c4394",
+				"dweb:/ipfs/QmVqzHBLtvsmQ9tgFiDSTjgA1114z5J3knZdvbGVNFn3cU"
 			]
 		}
 	},
