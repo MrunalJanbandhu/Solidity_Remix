@@ -168,6 +168,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "getBalanceOfContract",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "getOwners",
 				"outputs": [
 					{
@@ -414,11 +427,11 @@
 	},
 	"sources": {
 		"Sol_by_Example/Applications/02.MultiSigWallet.sol": {
-			"keccak256": "0x0f099f370c2efa5ac7aaa6e24c69964c7d98ee144ad85cfa33968a75bc944176",
+			"keccak256": "0xf9b53c4db36ad6d3839035d38041e0e6d6a5f8ff408416220d940f9dc382c882",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3c47b2af2c10e92670f1772793f935771e2d79a3cf3fec64381cad2d7a6c4394",
-				"dweb:/ipfs/QmVqzHBLtvsmQ9tgFiDSTjgA1114z5J3knZdvbGVNFn3cU"
+				"bzz-raw://047e494d01235fc275ba21c7cc1eb6cbf2009c54302d7d2ce578cce155ce7243",
+				"dweb:/ipfs/QmXHEsMyovDi7YLQfeSspDpqLvnVju3oEsfgW2fYLCeWtA"
 			]
 		}
 	},

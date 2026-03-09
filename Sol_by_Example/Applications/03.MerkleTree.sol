@@ -1,5 +1,8 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.26;
+pragma solidity ^0.8.28;
+
+/*Merkle tree allows you to cryptographically prove that an element is contained
+in a set without revealing the entire set.*/
 
 contract MerkleProof {
     function verify(
@@ -74,3 +77,12 @@ contract TestMerkleProof is MerkleProof {
     0x995788ffc103b987ad50f5e5707fd094419eb12d9552cc423bd0cd86a3861433
     */
 }
+
+/* 
+getRoot -
+    0xcc086fcc038189b4641db2cc4f1de3bb132aefbd65d510d817591550937818c7
+index 2 hash
+    0xdca3326ad7e8121bf9cf9c12333e6b2271abe823ec9edfe42f813b1e768fa57b
+
+
+*/

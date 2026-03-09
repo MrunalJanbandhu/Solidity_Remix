@@ -77,7 +77,7 @@ contract MultiSigWallet {
 
     function submitTransaction(address _to, uint256 _value, bytes memory _data)
         public 
-        onlyOwner 
+        onlyOwner  //
     {
         uint256 txIndex = transactions.length;
 
@@ -99,11 +99,11 @@ contract MultiSigWallet {
         onlyOwner
         txExists(_txIndex)
         notExecuted(_txIndex)
-        notConfirmed(_txIndex)
+        notConfirmed(_txIndex)  // isConfirmed mapping check with modifier?
     {   
         Transaction storage transaction = transactions[_txIndex];
         transaction.numConfirmations += 1;
-        isConfirmed[_txIndex][msg.sender] = true;
+        isConfirmed[_txIndex][msg.sender] = true;  //
 
         emit ConfirmTransaction(msg.sender, _txIndex);
     }
@@ -123,7 +123,7 @@ contract MultiSigWallet {
 
         transaction.executed = true;
 
-        (bool success,) = transaction.to.call{value: transaction.value}(transaction.data);
+        (bool success,) = transaction.to.call{value: transaction.value}(transaction.data);  // execution call
         require(success,"txn failed");
 
         emit ExecuteTransaction(msg.sender, _txIndex);
@@ -178,4 +178,9 @@ contract MultiSigWallet {
             transaction.numConfirmations
         );
     }
+    
+    function getBalanceOfContract() public view returns (uint256) {
+        return address(this).balance;
+    }
+
 }
