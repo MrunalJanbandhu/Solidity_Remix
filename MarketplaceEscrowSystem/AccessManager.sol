@@ -43,4 +43,5 @@ contract AccessManager {
         _roles[account][role] = true;
         emit RoleGranted(account, role);
     }
+
 }
