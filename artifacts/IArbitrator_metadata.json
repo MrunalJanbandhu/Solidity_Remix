@@ -36,33 +36,18 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"notifyDispute(uint256,address,address,uint256)": {
-					"params": {
-						"amount": "Escrowed amount in wei",
-						"buyer": "Buyer address",
-						"orderId": "The disputed order ID",
-						"seller": "Seller address"
-					}
-				}
-			},
-			"title": "IArbitrator",
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"notifyDispute(uint256,address,address,uint256)": {
-					"notice": "Notify the arbitrator that order `orderId` is now disputed."
-				}
-			},
-			"notice": "Interface that any external arbitrator contract must implement.         EscrowMarketplace calls `notifyDispute` when a dispute is opened.",
+			"methods": {},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"new/MarketplaceEscrow_Claude/IArbitrator.sol": "IArbitrator"
+			"MarketplaceEscrowSystem/IArbitrator.sol": "IArbitrator"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -76,12 +61,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"new/MarketplaceEscrow_Claude/IArbitrator.sol": {
-			"keccak256": "0x289e70a583a9a46c43950db00e8951ba1e3ce93b43287ce0dc3526f1f5a661a0",
+		"MarketplaceEscrowSystem/IArbitrator.sol": {
+			"keccak256": "0xf9a12bdd2d7bd84a098f187c3eba39a2587c0d9fe388857791945118214adae0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d023adc385eb57bf91d778b21f408859e5c97f7f9a74d1e491850247bd93027b",
-				"dweb:/ipfs/QmR6Ea45k2QQFQe7r4fy24ozk8odd5ZuANQwW52FpfhK41"
+				"bzz-raw://3de625781b5fc248721314ea7351721d01eef36ecd6f9828aa09a2c39a8129cb",
+				"dweb:/ipfs/QmXRFy38C641o9jT65pTZRFMnmVXWj5BF5d5dhrmwpZcAn"
 			]
 		}
 	},

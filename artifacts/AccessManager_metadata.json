@@ -7,22 +7,11 @@
 		"abi": [
 			{
 				"inputs": [],
-				"name": "InvalidRole",
-				"type": "error"
+				"stateMutability": "nonpayable",
+				"type": "constructor"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "caller",
-						"type": "address"
-					},
-					{
-						"internalType": "uint8",
-						"name": "role",
-						"type": "uint8"
-					}
-				],
+				"inputs": [],
 				"name": "Unauthorized",
 				"type": "error"
 			},
@@ -41,16 +30,10 @@
 						"type": "address"
 					},
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "uint8",
 						"name": "role",
 						"type": "uint8"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "by",
-						"type": "address"
 					}
 				],
 				"name": "RoleGranted",
@@ -66,16 +49,10 @@
 						"type": "address"
 					},
 					{
-						"indexed": false,
+						"indexed": true,
 						"internalType": "uint8",
 						"name": "role",
 						"type": "uint8"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "by",
-						"type": "address"
 					}
 				],
 				"name": "RoleRevoked",
@@ -83,7 +60,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "ROLE_ADMIN",
+				"name": "ADMIN",
 				"outputs": [
 					{
 						"internalType": "uint8",
@@ -96,7 +73,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "ROLE_MEDIATOR",
+				"name": "MEDIATOR",
 				"outputs": [
 					{
 						"internalType": "uint8",
@@ -109,7 +86,7 @@
 			},
 			{
 				"inputs": [],
-				"name": "ROLE_SELLER",
+				"name": "SELLER",
 				"outputs": [
 					{
 						"internalType": "uint8",
@@ -182,37 +159,19 @@
 			}
 		],
 		"devdoc": {
-			"details": "Roles: ADMIN (0), SELLER (1), MEDIATOR (2)",
 			"kind": "dev",
 			"methods": {},
-			"stateVariables": {
-				"_roles": {
-					"details": "address => role => granted"
-				}
-			},
-			"title": "AccessManager",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"grantRole(address,uint8)": {
-					"notice": "Grant a role to an account (admin only)"
-				},
-				"hasRole(address,uint8)": {
-					"notice": "Check whether `account` holds `role`"
-				},
-				"revokeRole(address,uint8)": {
-					"notice": "Revoke a role from an account (admin only)"
-				}
-			},
-			"notice": "Role-based access control base contract (no OpenZeppelin)",
+			"methods": {},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"new/MarketplaceEscrow_Claude/AccessManager.sol": "AccessManager"
+			"MarketplaceEscrowSystem/AccessManager.sol": "AccessManager"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -226,12 +185,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"new/MarketplaceEscrow_Claude/AccessManager.sol": {
-			"keccak256": "0x52f7c76275aff1c7049c81816181b91034d063eaff07ba49bf0f38f8a3ee9e53",
+		"MarketplaceEscrowSystem/AccessManager.sol": {
+			"keccak256": "0xece3765acada929f044c644d230ae1d4935bf04fc47712651296cb44ae0744ba",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://210ee1aba2a6fdcb6157ba1e5e4b9b2170df6cc81762b679cda66bfa62e07d26",
-				"dweb:/ipfs/QmfTMsskusHH68eqgM17y1rC9RvZM6JKZwMyt54ocjZgnx"
+				"bzz-raw://8e0ace4d62b99abcfbe1a9cb641cab3e1fa74231c4bf68d2ab3cd5a8b3d70e4c",
+				"dweb:/ipfs/QmZjPpVvnpth1LyRPyPJj5pjNgfJt3cCvLLRg4vjiRZ1Mi"
 			]
 		}
 	},

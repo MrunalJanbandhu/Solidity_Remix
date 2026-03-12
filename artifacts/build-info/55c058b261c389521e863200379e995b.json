@@ -1,0 +1,308 @@
+{
+	"id": "55c058b261c389521e863200379e995b",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.8.31",
+	"solcLongVersion": "0.8.31+commit.fd3a2265",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"MarketplaceEscrowSystem/IArbitrator.sol": {
+				"content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ninterface IArbitrator {\n    function notifyDispute(uint256 orderId, address buyer, address seller, uint256 amount) external;\n}\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			},
+			"remappings": []
+		}
+	},
+	"output": {
+		"contracts": {
+			"MarketplaceEscrowSystem/IArbitrator.sol": {
+				"IArbitrator": {
+					"abi": [
+						{
+							"inputs": [
+								{
+									"internalType": "uint256",
+									"name": "orderId",
+									"type": "uint256"
+								},
+								{
+									"internalType": "address",
+									"name": "buyer",
+									"type": "address"
+								},
+								{
+									"internalType": "address",
+									"name": "seller",
+									"type": "address"
+								},
+								{
+									"internalType": "uint256",
+									"name": "amount",
+									"type": "uint256"
+								}
+							],
+							"name": "notifyDispute",
+							"outputs": [],
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"kind": "dev",
+						"methods": {},
+						"version": 1
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"functionDebugData": {},
+							"generatedSources": [],
+							"immutableReferences": {},
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"notifyDispute(uint256,address,address,uint256)": "a4adcdd0"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.8.31+commit.fd3a2265\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"orderId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"buyer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"seller\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"notifyDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"MarketplaceEscrowSystem/IArbitrator.sol\":\"IArbitrator\"},\"evmVersion\":\"osaka\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"MarketplaceEscrowSystem/IArbitrator.sol\":{\"keccak256\":\"0xf9a12bdd2d7bd84a098f187c3eba39a2587c0d9fe388857791945118214adae0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3de625781b5fc248721314ea7351721d01eef36ecd6f9828aa09a2c39a8129cb\",\"dweb:/ipfs/QmXRFy38C641o9jT65pTZRFMnmVXWj5BF5d5dhrmwpZcAn\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"kind": "user",
+						"methods": {},
+						"version": 1
+					}
+				}
+			}
+		},
+		"sources": {
+			"MarketplaceEscrowSystem/IArbitrator.sol": {
+				"ast": {
+					"absolutePath": "MarketplaceEscrowSystem/IArbitrator.sol",
+					"exportedSymbols": {
+						"IArbitrator": [
+							13
+						]
+					},
+					"id": 14,
+					"license": "MIT",
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.8",
+								".28"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "32:24:0"
+						},
+						{
+							"abstract": false,
+							"baseContracts": [],
+							"canonicalName": "IArbitrator",
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"fullyImplemented": false,
+							"id": 13,
+							"linearizedBaseContracts": [
+								13
+							],
+							"name": "IArbitrator",
+							"nameLocation": "68:11:0",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"functionSelector": "a4adcdd0",
+									"id": 12,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "notifyDispute",
+									"nameLocation": "95:13:0",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 10,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 3,
+												"mutability": "mutable",
+												"name": "orderId",
+												"nameLocation": "117:7:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 12,
+												"src": "109:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 2,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "109:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 5,
+												"mutability": "mutable",
+												"name": "buyer",
+												"nameLocation": "134:5:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 12,
+												"src": "126:13:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "126:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 7,
+												"mutability": "mutable",
+												"name": "seller",
+												"nameLocation": "149:6:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 12,
+												"src": "141:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 6,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "141:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 9,
+												"mutability": "mutable",
+												"name": "amount",
+												"nameLocation": "165:6:0",
+												"nodeType": "VariableDeclaration",
+												"scope": 12,
+												"src": "157:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 8,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "157:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"visibility": "internal"
+											}
+										],
+										"src": "108:64:0"
+									},
+									"returnParameters": {
+										"id": 11,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "181:0:0"
+									},
+									"scope": 13,
+									"src": "86:96:0",
+									"stateMutability": "nonpayable",
+									"virtual": false,
+									"visibility": "external"
+								}
+							],
+							"scope": 14,
+							"src": "58:126:0",
+							"usedErrors": [],
+							"usedEvents": []
+						}
+					],
+					"src": "32:153:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

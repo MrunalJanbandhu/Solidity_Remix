@@ -37,6 +37,19 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "disputeCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -71,8 +84,14 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "lastDispute",
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getDispute",
 				"outputs": [
 					{
 						"components": [
@@ -100,19 +119,6 @@
 						"internalType": "struct MockArbitrator.DisputeRecord",
 						"name": "",
 						"type": "tuple"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "notifyCount",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -149,36 +155,18 @@
 		],
 		"devdoc": {
 			"kind": "dev",
-			"methods": {
-				"notifyDispute(uint256,address,address,uint256)": {
-					"params": {
-						"amount": "Escrowed amount in wei",
-						"buyer": "Buyer address",
-						"orderId": "The disputed order ID",
-						"seller": "Seller address"
-					}
-				}
-			},
-			"title": "MockArbitrator",
+			"methods": {},
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {
-				"lastDispute()": {
-					"notice": "Retrieve the last recorded dispute"
-				},
-				"notifyDispute(uint256,address,address,uint256)": {
-					"notice": "Notify the arbitrator that order `orderId` is now disputed."
-				}
-			},
-			"notice": "Records dispute notifications for test assertions",
+			"methods": {},
 			"version": 1
 		}
 	},
 	"settings": {
 		"compilationTarget": {
-			"new/MarketplaceEscrow_Claude/MockArbitrator.sol": "MockArbitrator"
+			"MarketplaceEscrowSystem/MockArbitrator.sol": "MockArbitrator"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -192,20 +180,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"new/MarketplaceEscrow_Claude/IArbitrator.sol": {
-			"keccak256": "0x289e70a583a9a46c43950db00e8951ba1e3ce93b43287ce0dc3526f1f5a661a0",
+		"MarketplaceEscrowSystem/IArbitrator.sol": {
+			"keccak256": "0xf9a12bdd2d7bd84a098f187c3eba39a2587c0d9fe388857791945118214adae0",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d023adc385eb57bf91d778b21f408859e5c97f7f9a74d1e491850247bd93027b",
-				"dweb:/ipfs/QmR6Ea45k2QQFQe7r4fy24ozk8odd5ZuANQwW52FpfhK41"
+				"bzz-raw://3de625781b5fc248721314ea7351721d01eef36ecd6f9828aa09a2c39a8129cb",
+				"dweb:/ipfs/QmXRFy38C641o9jT65pTZRFMnmVXWj5BF5d5dhrmwpZcAn"
 			]
 		},
-		"new/MarketplaceEscrow_Claude/MockArbitrator.sol": {
-			"keccak256": "0x860bb2ce11333fa2c416ba89fe16ca9c53ce3299fb9230276a0473c9646409bf",
+		"MarketplaceEscrowSystem/MockArbitrator.sol": {
+			"keccak256": "0xea8cf4cec5e6297f35aadf436593032667d3dca03e5cd8b0fb395da338d5ed1b",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://931ffd4417b878e7a5c7cb6fae88e23b8ad162d4106b32dbfb5dd0e164f443d2",
-				"dweb:/ipfs/QmPF46yWvDEL2ZRQBxg5JeNAzf6mtebFfvxJbqA3mGeoH7"
+				"bzz-raw://b9c8bb54a0c1b13ae1b2499dc0a2a08ccda8a535a32460ba54696085ff27dbd4",
+				"dweb:/ipfs/QmQ3xDZn9w6ncUYGwpP7GQZgQgdk3eaH36aVd9up5odWJd"
 			]
 		}
 	},
