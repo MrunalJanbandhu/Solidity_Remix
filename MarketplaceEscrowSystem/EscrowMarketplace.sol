@@ -261,4 +261,13 @@ contract EscrowMarketplace is AccessManager {
         (bool ok, ) = to.call{ value: amount }("");
         if (!ok) revert TransferFailed();
     }
+
+    function getEscrowBalance() external view returns (uint256 balance) {
+        return address(this).balance;
+    }
 }
+
+/*
+0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef
+0x0000000000000000000000000000000000000000000000000000000000000000
+*/

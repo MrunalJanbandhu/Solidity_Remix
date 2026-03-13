@@ -89,11 +89,11 @@
 	},
 	"sources": {
 		"Sol_by_Example/Applications/testCall.sol": {
-			"keccak256": "0x6fce7acd181649c2ac870011ce2ee7d2f32aa86752aba3b64df233075e680183",
+			"keccak256": "0xd1fa8ebb71b21b6deb75b65cd3938596fb36d0683d82a468109c3eedc383d7ea",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d7198c0dd433f03851632c3a9015863e8662c50752c786c47090d9d426a87a02",
-				"dweb:/ipfs/QmRru17SHzfLryMYJrew5Bstq6cWvdCGSRLzqZXd3LWbaZ"
+				"bzz-raw://4252c5eb688ab40ec567a82d791ffa4a10d0f812dd76d55d80daa53fac7dcbb1",
+				"dweb:/ipfs/QmUU5vETVQGLE5GusBaY1F5ojUTYTcNXUHrq3ZpzUJutQQ"
 			]
 		}
 	},
