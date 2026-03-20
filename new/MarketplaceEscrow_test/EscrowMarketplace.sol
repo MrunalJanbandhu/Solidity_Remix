@@ -2,73 +2,58 @@
 pragma solidity ^0.8.28;
 
 import "./AccessManager.sol";
+import "./Treasury.sol";
 import "./IArbitrator.sol";
 
-/// @title EscrowMarketplace
-/// @notice Multi-party escrow marketplace with strict state-machine order lifecycle.
-///         Inherits AccessManager for role-based access control.
-///         Fees are forwarded to an external Treasury contract.
-///         Reentrancy guard implemented manually (no OpenZeppelin).
 contract EscrowMarketplace is AccessManager {
-
-    // ─────────────────────────── State Machine ───────────────────
-
+   
     enum OrderState {
-        Created,    // 0 — order exists, not yet funded
-        Funded,     // 1 — buyer has deposited ETH
-        Shipped,    // 2 — seller has marked as shipped
-        Completed,  // 3 — buyer confirmed receipt, funds released
-        Disputed,   // 4 — dispute opened, awaiting mediator
-        Refunded,   // 5 — dispute resolved in buyer's favour
-        Cancelled   // 6 — cancelled before funding
+        Created,
+        Funded,
+        Shipped,
+        Completed,
+        Disputed,
+        Refunded,
+        Cancelled
     }
-
-    // ─────────────────────────── Data Types ──────────────────────
 
     struct Order {
-        uint256   id;
-        address   buyer;
-        address   seller;
-        uint256   amount;       // agreed price in wei (set when funded)
-        uint256   createdAt;    // block.timestamp at creation
-        bytes32   detailsHash;  // off-chain metadata hash (IPFS / backend)
+        uint256 id;
+        address buyer;
+        address seller;
+        uint256 amount;
+        uint256 createdAt;
+        bytes32 detailsHash;            // off-chain metadata hash
         OrderState state;
     }
+    
+    Treasury public immutable treasury;
+    IArbitrator public arbitrator;
 
-    // ─────────────────────────── Storage ─────────────────────────
+    uint256 private _nextOrderId = 1;   // question - why private
+    bool private _locked;               // false by default
 
-    /// @notice Treasury contract that receives marketplace fees
-    address payable public treasury;
+    // OrderId => struct Order 
+    mapping (uint256 => Order ) private _orders;
 
-    /// @notice Optional external arbitrator (can be address(0))
-    address public arbitrator;
+    uint256 public feeBps = 100;
+    uint256 public constant MAX_FEE_BPS = 500;
 
-    /// @notice Fee in basis points (1 BPS = 0.01%).  Default 100 BPS = 1%
-    uint16 public feeBps;
+    error NonReentrant();
+    error NotBuyer(uint256);
+    error InvalidState(uint256, OrderState);
+    error ZeroAmount();
+    error TransferFailed();   
+    error OrderNotFound(uint256); 
+    error NotSeller(uint256);
+    error FeeTooHigh(uint256, uint256);
 
-    uint16 public constant MAX_FEE_BPS = 500; // 5% hard cap
-
-    uint256 public nextOrderId;
-
-    mapping(uint256 => Order) public orders;
-
-    /// @dev Manual reentrancy lock
-    bool private _locked;
-
-    // ─────────────────────────── Errors ──────────────────────────
-
-    error InvalidState(uint256 orderId, OrderState current, OrderState expected);
-    error NotBuyer(uint256 orderId, address caller);
-    error NotSeller(uint256 orderId, address caller);
-    error IncorrectPayment(uint256 sent, uint256 required);
-    error TransferFailed();
-    error FeeTooHigh(uint16 bps, uint16 max);
-    error ReentrantCall();
-    error SameAddress();
-
-    // ─────────────────────────── Events ──────────────────────────
-
-    event OrderCreated(uint256 indexed id, address indexed buyer, address indexed seller, bytes32 detailsHash);
+    event OrderCreated(
+        uint256 indexed orderId, 
+        address indexed buyer,
+        address indexed seller,
+        bytes32 detailHash
+    );
     event OrderFunded(uint256 indexed id, uint256 amount);
     event OrderShipped(uint256 indexed id);
     event OrderCompleted(uint256 indexed id, uint256 payoutToSeller, uint256 fee);
@@ -76,279 +61,221 @@ contract EscrowMarketplace is AccessManager {
     event DisputeResolved(uint256 indexed id, bool releasedToSeller);
     event Refunded(uint256 indexed id, uint256 amount);
     event Cancelled(uint256 indexed id);
-    event FeeUpdated(uint16 oldBps, uint16 newBps);
-    event ArbitratorUpdated(address indexed oldArbitrator, address indexed newArbitrator);
-    event TreasuryUpdated(address indexed oldTreasury, address indexed newTreasury);
-
-    // ─────────────────────────── Modifiers ───────────────────────
+    event FeeUpdated(uint256 oldBps, uint256 newBps);
+    event ArbitratorUpdated(address oldArbitrator, address newArbitrator);
 
     modifier nonReentrant() {
-        if (_locked) revert ReentrantCall();
+        if(_locked) {
+            revert NonReentrant();
+        }
+
         _locked = true;
         _;
         _locked = false;
     }
 
-    modifier onlyBuyer(uint256 orderId) {
-        if (orders[orderId].buyer != msg.sender) revert NotBuyer(orderId, msg.sender);
-        _;
+    constructor (address payable treasuryAddress, address arbitratorAddress) {
+        if( treasuryAddress == address(0)) revert ZeroAddress();
+        if( arbitratorAddress == address(0)) revert ZeroAddress();
+
+        treasury = Treasury(treasuryAddress);
+        arbitrator = IArbitrator(arbitratorAddress);
     }
+    
+    // buyer flow
+    // question - why external and not public?
+    function createOrder(address _seller, bytes32 _detailHash) external returns (uint256 orderId) {
+        if(_seller == msg.sender)
+            revert Unauthorized();
+        if(!hasRole(_seller,SELLER))
+            revert Unauthorized();
+       
 
-    modifier onlyOrderSeller(uint256 orderId) {
-        if (orders[orderId].seller != msg.sender) revert NotSeller(orderId, msg.sender);
-        _;
-    }
+        orderId = _nextOrderId++;
 
-    modifier inState(uint256 orderId, OrderState expected) {
-        OrderState current = orders[orderId].state;
-        if (current != expected) revert InvalidState(orderId, current, expected);
-        _;
-    }
-
-    // ─────────────────────────── Constructor ─────────────────────
-
-    /// @param _treasury   Address of deployed Treasury contract
-    /// @param _feeBps     Initial fee in basis points (≤ 500)
-    /// @param _arbitrator Optional external arbitrator (pass address(0) to skip)
-    constructor(address payable _treasury, uint16 _feeBps, address _arbitrator) {
-        if (_treasury == address(0)) revert ZeroAddress();
-        if (_feeBps > MAX_FEE_BPS) revert FeeTooHigh(_feeBps, MAX_FEE_BPS);
-
-        treasury   = _treasury;
-        feeBps     = _feeBps;
-        arbitrator = _arbitrator;
-        nextOrderId = 1;
-    }
-
-    // ══════════════════════ BUYER ACTIONS ════════════════════════
-
-    /// @notice Create a new order with an off-chain metadata hash.
-    /// @param seller       Seller's address (must hold ROLE_SELLER)
-    /// @param detailsHash  keccak256 of order metadata stored off-chain
-    /// @return orderId     ID of the newly created order
-    function createOrder(address seller, bytes32 detailsHash)
-        external
-        returns (uint256 orderId)
-    {
-        if (seller == address(0)) revert ZeroAddress();
-        if (seller == msg.sender) revert SameAddress();
-        if (!hasRole(seller, ROLE_SELLER)) revert Unauthorized(seller, ROLE_SELLER);
-
-        orderId = nextOrderId++;
-
-        orders[orderId] = Order({
+        _orders[orderId] = Order({
             id:          orderId,
             buyer:       msg.sender,
-            seller:      seller,
+            seller:      _seller,
             amount:      0,
             createdAt:   block.timestamp,
-            detailsHash: detailsHash,
+            detailsHash: _detailHash,          // off-chain metadata hash
             state:       OrderState.Created
         });
 
-        emit OrderCreated(orderId, msg.sender, seller, detailsHash);
+        emit OrderCreated(orderId, msg.sender, _seller, _detailHash);
     }
 
-    /// @notice Fund a Created order with the exact agreed ETH amount.
-    /// @dev    msg.value becomes the locked escrow amount.
-    ///         Transitions: Created → Funded
-    function fundOrder(uint256 orderId)
-        external
-        payable
-        onlyBuyer(orderId)
-        inState(orderId, OrderState.Created)
-        nonReentrant
-    {
-        if (msg.value == 0) revert IncorrectPayment(msg.value, 1);
+    function fundOrder(uint256 orderId) payable external nonReentrant {
+        Order storage o = _orders[orderId];
 
-        // Effects
-        Order storage order = orders[orderId];
-        order.amount = msg.value;
-        order.state  = OrderState.Funded;
+        if ( o.buyer != msg.sender ) 
+            revert NotBuyer(orderId);
+        if ( o.state != OrderState.Created )
+            revert InvalidState(orderId, o.state);
+        if( msg.value == 0 )
+            revert ZeroAmount();
+
+        o.amount = msg.value;
+        o.state = OrderState.Funded;
 
         emit OrderFunded(orderId, msg.value);
-    }
 
-    /// @notice Buyer confirms delivery — releases funds to seller minus fee.
-    ///         Transitions: Shipped → Completed
-    function confirmReceived(uint256 orderId)
-        external
-        onlyBuyer(orderId)
-        inState(orderId, OrderState.Shipped)
-        nonReentrant
-    {
-        Order storage order = orders[orderId];
+    } 
 
-        // Effects first (CEI)
-        order.state = OrderState.Completed;
+    function confirmReceived(uint256 orderId) external nonReentrant {
+        Order storage o = _orders[orderId];
 
-        uint256 fee    = _calculateFee(order.amount);
-        uint256 payout = order.amount - fee;
+        if( msg.sender != o.buyer ) 
+            revert NotBuyer(orderId);
+        if( o.state != OrderState.Shipped ) 
+            revert InvalidState(orderId, o.state);
+
+        o.state = OrderState.Completed;
+
+        (uint256 payout, uint256 fee) = _calcFee(o.amount);
 
         emit OrderCompleted(orderId, payout, fee);
 
-        // Interactions
-        _sendEth(order.seller, payout);
-        if (fee > 0) _sendEth(treasury, fee);
+        _safeTransfer(o.seller, payout);
+        _safeTransfer(address(treasury), fee);
+
     }
 
-    /// @notice Buyer cancels a Created (unfunded) order.
-    ///         Transitions: Created → Cancelled
-    function cancelUnfunded(uint256 orderId)
-        external
-        onlyBuyer(orderId)
-        inState(orderId, OrderState.Created)
-    {
-        orders[orderId].state = OrderState.Cancelled;
+    function cancelUnfunded(uint256 orderId) external {
+        Order storage o = _getOrder(orderId);
+
+        if(o.buyer != msg.sender) {
+            revert NotBuyer(orderId);
+        }
+        if(o.state != OrderState.Created){
+            revert InvalidState(orderId, o.state);
+        }
+        
+        o.state = OrderState.Cancelled;
+
         emit Cancelled(orderId);
     }
 
-    /// @notice Buyer opens a dispute (Funded or Shipped).
-    ///         Transitions: Funded|Shipped → Disputed
-    function openDispute(uint256 orderId)
-        external
-        onlyBuyer(orderId)
-        nonReentrant
-    {
-        Order storage order = orders[orderId];
-        OrderState s = order.state;
+    // Seller flow
+    function markShipped(uint256 orderId) external {
+        Order storage o = _getOrder(orderId);
 
-        if (s != OrderState.Funded && s != OrderState.Shipped) {
-            // Provide a meaningful error; use Funded as the "expected" hint
-            revert InvalidState(orderId, s, OrderState.Funded);
+        if( msg.sender != o.seller)     
+            revert NotSeller(orderId);
+        if( o.state != OrderState.Funded)
+            revert InvalidState(orderId, o.state);
+
+        o.state = OrderState.Shipped;
+
+        emit OrderShipped(orderId);
+
+    }
+
+    // Dispute Flow
+    function openDispute(uint256 orderId) external {
+        Order storage o = _getOrder(orderId);
+
+        if( msg.sender != o.buyer ) {
+            revert NotBuyer(orderId);
+        }
+        if( o.state != OrderState.Funded && o.state != OrderState.Shipped ){
+            revert InvalidState(orderId, o.state);
         }
 
-        // Effects
-        order.state = OrderState.Disputed;
+        o.state = OrderState.Disputed;
+
         emit DisputeOpened(orderId, msg.sender);
 
-        // Notify external arbitrator (optional — swallow failure gracefully)
-        if (arbitrator != address(0)) {
-            try IArbitrator(arbitrator).notifyDispute(
-                orderId,
-                order.buyer,
-                order.seller,
-                order.amount
-            ) {} catch {}
+        try arbitrator.notifyDispute( orderId, o.buyer, o.seller, o.amount ) {}
+        catch {}
+    }
+
+    function resolveDispute (uint256 orderId, bool releaseToSeller) external nonReentrant onlyRole(MEDIATOR) {
+        Order storage o = _getOrder(orderId);
+
+        if( o.state != OrderState.Disputed) {
+            revert InvalidState(orderId, o.state);
         }
-    }
 
-    // ══════════════════════ SELLER ACTIONS ═══════════════════════
+        if( releaseToSeller ) {
+            o.state = OrderState.Completed;
+        }
+        else {
+            o.state = OrderState.Refunded;
+        }
 
-    /// @notice Seller marks the order as shipped.
-    ///         Transitions: Funded → Shipped
-    function markShipped(uint256 orderId)
-        external
-        onlyOrderSeller(orderId)
-        inState(orderId, OrderState.Funded)
-    {
-        orders[orderId].state = OrderState.Shipped;
-        emit OrderShipped(orderId);
-    }
+        emit DisputeResolved(orderId, releaseToSeller);
 
-    // ══════════════════════ MEDIATOR / ADMIN ACTIONS ═════════════
-
-    /// @notice Resolve a disputed order.
-    ///         `releaseToSeller = true`  → Completed  (seller gets paid minus fee)
-    ///         `releaseToSeller = false` → Refunded   (buyer gets full amount back)
-    ///         Transitions: Disputed → Completed | Refunded
-    function resolveDispute(uint256 orderId, bool releaseToSeller)
-        external
-        onlyAdminOrMediator
-        inState(orderId, OrderState.Disputed)
-        nonReentrant
-    {
-        Order storage order = orders[orderId];
-
-        if (releaseToSeller) {
-            // Effects
-            order.state = OrderState.Completed;
-
-            uint256 fee    = _calculateFee(order.amount);
-            uint256 payout = order.amount - fee;
-
-            emit DisputeResolved(orderId, true);
+        if( releaseToSeller ) {
+            (uint256 payout, uint256 fee) = _calcFee(o.amount);
             emit OrderCompleted(orderId, payout, fee);
-
-            // Interactions
-            _sendEth(order.seller, payout);
-            if (fee > 0) _sendEth(treasury, fee);
-        } else {
-            // Effects
-            uint256 refundAmt = order.amount;
-            order.state = OrderState.Refunded;
-
-            emit DisputeResolved(orderId, false);
-            emit Refunded(orderId, refundAmt);
-
-            // Interactions
-            _sendEth(order.buyer, refundAmt);
+            _safeTransfer(address(treasury), fee);
+            _safeTransfer(o.seller, payout);
         }
+        else {
+            emit Refunded(orderId, o.amount);
+            _safeTransfer(o.buyer, o.amount);
+        }
+
+    }
+    
+    function refundBuyer(uint256 orderId) external nonReentrant onlyRole(MEDIATOR) {
+        Order storage o = _getOrder(orderId);
+
+        if( o.state != OrderState.Disputed ) {
+            revert InvalidState(orderId, o.state);
+        }
+
+        uint256 amt = o.amount;
+        o.state = OrderState.Refunded;
+
+        emit Refunded(orderId, o.amount);
+
+        _safeTransfer(o.buyer, amt);
     }
 
-    /// @notice Direct refund by mediator/admin (e.g. seller agrees pre-shipping).
-    ///         Order must be in Disputed state.
-    ///         Alias for resolveDispute(orderId, false) — kept for explicit interface.
-    function refundBuyer(uint256 orderId)
-        external
-        onlyAdminOrMediator
-        inState(orderId, OrderState.Disputed)
-        nonReentrant
-    {
-        Order storage order = orders[orderId];
-        uint256 refundAmt = order.amount;
+    // Admin
+    function updateFee(uint256 newBps) external onlyRole(ADMIN) {
+        if( newBps > MAX_FEE_BPS ) {
+            revert FeeTooHigh(newBps, MAX_FEE_BPS);
+        }
 
-        // Effects
-        order.state = OrderState.Refunded;
-        emit Refunded(orderId, refundAmt);
-
-        // Interactions
-        _sendEth(order.buyer, refundAmt);
-    }
-
-    // ══════════════════════ ADMIN CONFIG ═════════════════════════
-
-    /// @notice Update the marketplace fee in basis points (max 500 = 5%)
-    function updateFee(uint16 newBps) external onlyRole(ROLE_ADMIN) {
-        if (newBps > MAX_FEE_BPS) revert FeeTooHigh(newBps, MAX_FEE_BPS);
         emit FeeUpdated(feeBps, newBps);
+
         feeBps = newBps;
     }
 
-    /// @notice Update the treasury address
-    function updateTreasury(address payable newTreasury) external onlyRole(ROLE_ADMIN) {
-        if (newTreasury == address(0)) revert ZeroAddress();
-        emit TreasuryUpdated(treasury, newTreasury);
-        treasury = newTreasury;
+    function setArbitrator(address newArbitrator) external onlyRole(ADMIN) {
+        if( newArbitrator == address(0) ) {
+            revert ZeroAddress();
+        }
+
+        emit ArbitratorUpdated(address(arbitrator), newArbitrator);
+
+        arbitrator = IArbitrator(newArbitrator);
     }
 
-    /// @notice Update the arbitrator address (address(0) to disable)
-    function updateArbitrator(address newArbitrator) external onlyRole(ROLE_ADMIN) {
-        emit ArbitratorUpdated(arbitrator, newArbitrator);
-        arbitrator = newArbitrator;
-    }
-
-    // ══════════════════════ VIEW HELPERS ═════════════════════════
-
-    /// @notice Return full order data
     function getOrder(uint256 orderId) external view returns (Order memory) {
-        return orders[orderId];
+        return _getOrder(orderId);
     }
 
-    /// @notice Calculate the fee for a given amount using current feeBps
-    function calculateFee(uint256 amount) external view returns (uint256) {
-        return _calculateFee(amount);
+    function _getOrder(uint256 orderId) internal view returns (Order storage) {
+        Order storage o = _orders[orderId];
+        if( o.buyer == address(0) ) 
+            revert OrderNotFound(orderId);
+        return o;
     }
 
-    // ══════════════════════ INTERNAL ═════════════════════════════
-
-    function _calculateFee(uint256 amount) internal view returns (uint256) {
-        return (amount * feeBps) / 10_000;
-    }
-
-    /// @dev Safe ETH transfer — reverts on failure
-    function _sendEth(address to, uint256 amount) internal {
+    function _safeTransfer(address to, uint256 amount) internal {
+        if( amount == 0)
+            return;
         (bool ok, ) = to.call{value: amount}("");
         if (!ok) revert TransferFailed();
+    }
+
+    function _calcFee(uint256 amount) internal view returns(uint256 payout, uint256 fee) {
+        fee = (amount * feeBps) / 10_000; // question - 10_000?
+        payout = amount - fee;
     }
 }

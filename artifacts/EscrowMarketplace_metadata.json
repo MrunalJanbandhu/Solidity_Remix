@@ -9,12 +9,12 @@
 				"inputs": [
 					{
 						"internalType": "address payable",
-						"name": "treasuryAddr",
+						"name": "treasuryAddress",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "arbitratorAddr",
+						"name": "arbitratorAddress",
 						"type": "address"
 					}
 				],
@@ -25,12 +25,12 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "requested",
+						"name": "",
 						"type": "uint256"
 					},
 					{
 						"internalType": "uint256",
-						"name": "max",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -41,28 +41,12 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "expected",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "received",
-						"type": "uint256"
-					}
-				],
-				"name": "IncorrectPayment",
-				"type": "error"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "orderId",
+						"name": "",
 						"type": "uint256"
 					},
 					{
 						"internalType": "enum EscrowMarketplace.OrderState",
-						"name": "current",
+						"name": "",
 						"type": "uint8"
 					}
 				],
@@ -70,10 +54,15 @@
 				"type": "error"
 			},
 			{
+				"inputs": [],
+				"name": "NonReentrant",
+				"type": "error"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "orderId",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -84,7 +73,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "orderId",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -95,16 +84,11 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "orderId",
+						"name": "",
 						"type": "uint256"
 					}
 				],
 				"name": "OrderNotFound",
-				"type": "error"
-			},
-			{
-				"inputs": [],
-				"name": "Reentrant",
 				"type": "error"
 			},
 			{
@@ -247,7 +231,7 @@
 					{
 						"indexed": true,
 						"internalType": "uint256",
-						"name": "id",
+						"name": "orderId",
 						"type": "uint256"
 					},
 					{
@@ -265,7 +249,7 @@
 					{
 						"indexed": false,
 						"internalType": "bytes32",
-						"name": "detailsHash",
+						"name": "detailHash",
 						"type": "bytes32"
 					}
 				],
@@ -456,12 +440,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "seller",
+						"name": "_seller",
 						"type": "address"
 					},
 					{
 						"internalType": "bytes32",
-						"name": "detailsHash",
+						"name": "_detailHash",
 						"type": "bytes32"
 					}
 				],
@@ -500,19 +484,6 @@
 				"name": "fundOrder",
 				"outputs": [],
 				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "getEscrowBalance",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "balance",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -575,12 +546,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "account",
+						"name": "_account",
 						"type": "address"
 					},
 					{
 						"internalType": "uint8",
-						"name": "role",
+						"name": "_assignRole",
 						"type": "uint8"
 					}
 				],
@@ -674,12 +645,12 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "account",
+						"name": "_account",
 						"type": "address"
 					},
 					{
 						"internalType": "uint8",
-						"name": "role",
+						"name": "_role",
 						"type": "uint8"
 					}
 				],
@@ -741,7 +712,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MarketplaceEscrowSystem/EscrowMarketplace.sol": "EscrowMarketplace"
+			"new/MarketplaceEscrow_test/EscrowMarketplace.sol": "EscrowMarketplace"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -755,36 +726,36 @@
 		"remappings": []
 	},
 	"sources": {
-		"MarketplaceEscrowSystem/AccessManager.sol": {
-			"keccak256": "0x10176f36605e2b7786d1ed4a78aa08aa3430116cc025e06f3b524115a7906364",
+		"new/MarketplaceEscrow_test/AccessManager.sol": {
+			"keccak256": "0xc27b3a7cb5be7979b33589621d4c1cbdfc79753718f51e58b4ef4c3156d0fdb6",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6c729dd6b799b606ef0b8a5f33463d52023f22bc3c1598a0b68ee548b7192056",
-				"dweb:/ipfs/QmS4CKUArJonM5fRSPUVDqQBU2PGycxChghD4C4hKCm8H9"
+				"bzz-raw://4f1cc0320c402a4c959e8a8eb31c9b3e628fe716447ddf582e556c49e9f5bf65",
+				"dweb:/ipfs/QmYmUtsVMu3xYhneeypz62k3XzHqQiXPd3erFUm8mrCu9E"
 			]
 		},
-		"MarketplaceEscrowSystem/EscrowMarketplace.sol": {
-			"keccak256": "0x9f06530b3caf7603173e47975fa199e16c86327f23ae3b277008e1ef852e3717",
+		"new/MarketplaceEscrow_test/EscrowMarketplace.sol": {
+			"keccak256": "0x8e88aa6e05a9029e138380a48287cec872f4ddfd9dcf8dcddeddc61eb1a00bdc",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d319874b568b27a75248f90c5903d080196291b13c29d6efab69f2246a639fe1",
-				"dweb:/ipfs/QmdJj1bgT8GBYnJ9HS2mG6THEtQ6SVeZSKz9yM3rYD1BPq"
+				"bzz-raw://c4c6f917acd715f977f8517939fb021e030bb5918831b78ee37b76811048da7e",
+				"dweb:/ipfs/QmfQ5MvB8DEakn2TY7BVB8326n268F6cZMY6zhdCaPEJCY"
 			]
 		},
-		"MarketplaceEscrowSystem/IArbitrator.sol": {
-			"keccak256": "0xf9a12bdd2d7bd84a098f187c3eba39a2587c0d9fe388857791945118214adae0",
+		"new/MarketplaceEscrow_test/IArbitrator.sol": {
+			"keccak256": "0x2ae53bb8b0097e3404b0456fd273e47f41746278c90219f8373e04fb77833058",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3de625781b5fc248721314ea7351721d01eef36ecd6f9828aa09a2c39a8129cb",
-				"dweb:/ipfs/QmXRFy38C641o9jT65pTZRFMnmVXWj5BF5d5dhrmwpZcAn"
+				"bzz-raw://32455c644bff6625ffc5fa6f1b991b2200d00ebd78751c0215453503e7ac1ad6",
+				"dweb:/ipfs/QmNjLdqG2vabssX4KT1ZhrHf1ZfeELQMrDbz7b7tfKvj1K"
 			]
 		},
-		"MarketplaceEscrowSystem/Treasury.sol": {
-			"keccak256": "0xac053d05cb0f8adf1eab324a68c3b2244ab24a3b670774403cbb56faa087cbc0",
+		"new/MarketplaceEscrow_test/Treasury.sol": {
+			"keccak256": "0xa764a54fcc0f7ee4a99c28a5a37eed80a193024bfddc5556ac5fc722d008c8e1",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://70e89bdd9b5044c17bac40f0bbfeec7da48d6412085376b8744d0dd4d0ad0a57",
-				"dweb:/ipfs/QmR6VE2FpriktnqcSqtGUsXN17dAqkTx7whUCyUYWDeHH2"
+				"bzz-raw://b95486b19df6ef6e2465ff91df0023b2ae02f195efc49c66d821e8a6cc4f1904",
+				"dweb:/ipfs/QmcMZzUhAf8jjSwXRmJYxtFdnxScV4K9wzdvrS4grRts8W"
 			]
 		}
 	},

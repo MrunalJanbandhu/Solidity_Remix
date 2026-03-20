@@ -1,91 +1,62 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.28;
 
-/*Implements role-based access control with ADMIN, SELLER, MEDIATOR.
-
+/*
+    Implements role-based access control with ADMIN, SELLER, MEDIATOR.
+    AccessManager contract is a base contract inherited by EscrowMarketplace
 */
 
+contract AccessManager {
 
-/// @title AccessManager
-/// @notice Role-based access control base contract (no OpenZeppelin)
-/// @dev Roles: ADMIN (0), SELLER (1), MEDIATOR (2)
-abstract contract AccessManager {
-    // ─────────────────────────── Roles ───────────────────────────
+    uint8 public constant ADMIN    = 1;
+    uint8 public constant SELLER   = 2;
+    uint8 public constant MEDIATOR = 3;
 
-    uint8 public constant ROLE_ADMIN    = 0;
-    uint8 public constant ROLE_SELLER   = 1;
-    uint8 public constant ROLE_MEDIATOR = 2;
-
-    /// @dev address => role => granted
-    mapping(address => mapping(uint8 => bool)) private _roles;
-
-    // ─────────────────────────── Errors ──────────────────────────
-
-    error Unauthorized(address caller, uint8 role);
+    error Unauthorized(); 
     error ZeroAddress();
-    error InvalidRole();
 
-    // ─────────────────────────── Events ──────────────────────────
+    event RoleGranted(address indexed account, uint8 indexed role);
+    event RoleRevoked(address indexed account, uint8 indexed role);
 
-    event RoleGranted(address indexed account, uint8 role, address indexed by);
-    event RoleRevoked(address indexed account, uint8 role, address indexed by);
+    // role_addr -> role_assigned -> bool 
+    mapping (address => mapping (uint8 => bool)) private _roles;
 
-    // ──────────────────────── Constructor ────────────────────────
-
-    constructor() {
-        // deployer receives ADMIN role
-        _grantRole(msg.sender, ROLE_ADMIN);
+    constructor () {
+        // question: why did we write a seperate function and even then an internal function for grant role
+        _grantRole(msg.sender, ADMIN);  
     }
 
-    // ─────────────────────────── Modifiers ───────────────────────
-
-    modifier onlyRole(uint8 role) {
-        if (!hasRole(msg.sender, role)) revert Unauthorized(msg.sender, role);
-        _;
-    }
-
-    // ADMIN OR MEDIATOR — used for dispute resolution
-    modifier onlyAdminOrMediator() {
-        if (!hasRole(msg.sender, ROLE_ADMIN) && !hasRole(msg.sender, ROLE_MEDIATOR)) {
-            revert Unauthorized(msg.sender, ROLE_MEDIATOR);
+    modifier onlyRole(uint8 _role) {
+        if ( !_roles[msg.sender][_role]) {
+            revert Unauthorized();
         }
         _;
     }
 
-    // ──────────────────────── Role Logic ─────────────────────────
+    // question why address doesn't have memory keyword
+    function grantRole(address _account, uint8 _assignRole ) external onlyRole(ADMIN) {
+        if( _account == address(0) || _assignRole == ADMIN ) {
+            revert Unauthorized();
+        }
+        _grantRole(_account, _assignRole);
+    }
 
-    /// @notice Check whether `account` holds `role`
+    function revokeRole(address _account, uint8 _role) external onlyRole(ADMIN) {
+        if(_account == address(0) ) {
+            revert ZeroAddress();
+        }
+        _roles[_account][_role] = false;
+        emit RoleRevoked(_account, _role);
+    }
+
+    // what is the role of internal helper function
+    function _grantRole(address _account, uint8 _assignRole ) internal {
+        _roles[_account][_assignRole] = true;
+        emit RoleGranted(_account, _assignRole);
+    }
+
     function hasRole(address account, uint8 role) public view returns (bool) {
         return _roles[account][role];
     }
 
-    /// @notice Grant a role to an account (admin only)
-    function grantRole(address account, uint8 role) external onlyRole(ROLE_ADMIN) {
-        if (account == address(0)) revert ZeroAddress();
-        if (role > ROLE_MEDIATOR) revert InvalidRole();
-        _grantRole(account, role);
-    }
-
-    /// @notice Revoke a role from an account (admin only)
-    function revokeRole(address account, uint8 role) external onlyRole(ROLE_ADMIN) {
-        if (account == address(0)) revert ZeroAddress();
-        if (role > ROLE_MEDIATOR) revert InvalidRole();
-        _revokeRole(account, role);
-    }
-
-    // ─────────────────────── Internal Helpers ────────────────────
-
-    function _grantRole(address account, uint8 role) internal {
-        if (!_roles[account][role]) {
-            _roles[account][role] = true;
-            emit RoleGranted(account, role, msg.sender);
-        }
-    }
-
-    function _revokeRole(address account, uint8 role) internal {
-        if (_roles[account][role]) {
-            _roles[account][role] = false;
-            emit RoleRevoked(account, role, msg.sender);
-        }
-    }
 }

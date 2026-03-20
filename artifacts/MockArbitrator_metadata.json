@@ -166,7 +166,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"MarketplaceEscrowSystem/MockArbitrator.sol": "MockArbitrator"
+			"new/MarketplaceEscrow_test/MockArbitrator.sol": "MockArbitrator"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -180,20 +180,20 @@
 		"remappings": []
 	},
 	"sources": {
-		"MarketplaceEscrowSystem/IArbitrator.sol": {
-			"keccak256": "0xf9a12bdd2d7bd84a098f187c3eba39a2587c0d9fe388857791945118214adae0",
+		"new/MarketplaceEscrow_test/IArbitrator.sol": {
+			"keccak256": "0x2ae53bb8b0097e3404b0456fd273e47f41746278c90219f8373e04fb77833058",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3de625781b5fc248721314ea7351721d01eef36ecd6f9828aa09a2c39a8129cb",
-				"dweb:/ipfs/QmXRFy38C641o9jT65pTZRFMnmVXWj5BF5d5dhrmwpZcAn"
+				"bzz-raw://32455c644bff6625ffc5fa6f1b991b2200d00ebd78751c0215453503e7ac1ad6",
+				"dweb:/ipfs/QmNjLdqG2vabssX4KT1ZhrHf1ZfeELQMrDbz7b7tfKvj1K"
 			]
 		},
-		"MarketplaceEscrowSystem/MockArbitrator.sol": {
-			"keccak256": "0xea8cf4cec5e6297f35aadf436593032667d3dca03e5cd8b0fb395da338d5ed1b",
+		"new/MarketplaceEscrow_test/MockArbitrator.sol": {
+			"keccak256": "0xefa29e1394eae18114d6e07fa6b03fa6c728d2a6246cd2e4f55a3349f5b7d509",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://b9c8bb54a0c1b13ae1b2499dc0a2a08ccda8a535a32460ba54696085ff27dbd4",
-				"dweb:/ipfs/QmQ3xDZn9w6ncUYGwpP7GQZgQgdk3eaH36aVd9up5odWJd"
+				"bzz-raw://8649fe29e026ea3875b80053e2a1eeb69233fba10593df694e48a48514f25e38",
+				"dweb:/ipfs/QmZtLfGLY2BobADTfnB5WkiSNZ2Cvtz9ZivmqFjwJiPNZY"
 			]
 		}
 	},
