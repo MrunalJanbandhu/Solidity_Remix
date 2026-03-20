@@ -6,21 +6,16 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					},
+				"inputs": [],
+				"name": "totalSupply",
+				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
 					}
 				],
-				"name": "transfer",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -37,7 +32,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Sol_by_Example/Basics/34.abiencode.sol": "IERC20"
+			"Sol_by_Example/Applications/05.ERC20.sol": "IERC20"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -51,12 +46,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"Sol_by_Example/Basics/34.abiencode.sol": {
-			"keccak256": "0x5a4e826bf3cb834a4ab1c79d5be4597c7388f0bab294a38781c59ab1ee644817",
+		"Sol_by_Example/Applications/05.ERC20.sol": {
+			"keccak256": "0xe61b7fa6a36a994b4371582d2db979697bc60a6786812e570ed4a07f4079c262",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://81e25d066855d15fe8b5e65f435897bba168770d20882108a0ea372ac2906566",
-				"dweb:/ipfs/QmRvrenY5AuF1XCrUuAmAopQm5Q1JMvWnH1ajD3SBZFkaE"
+				"bzz-raw://318feee4f7b8248a469808a75a452937f865ec62c985d6e37ecc4da154085f3c",
+				"dweb:/ipfs/QmX6SxCLAr7Bv8Snu8253Y55hmS7xXMvVgkUcT4EjkPV3c"
 			]
 		}
 	},

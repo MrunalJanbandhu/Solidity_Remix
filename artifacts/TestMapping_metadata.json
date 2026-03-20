@@ -99,11 +99,11 @@
 	},
 	"sources": {
 		"Sol_by_Example/Applications/IterableMapping.sol": {
-			"keccak256": "0xf086137ac77e1190d7636e44bb4f04075a534a01c30b37551076155047b3fe5d",
+			"keccak256": "0x4df1a9ffea4c62fedb535c5ae6da04bf2611f8034871894d4bc02324fd3ba417",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://43a88faee7a3d4dc07b752913418d6c51e9a8cbd1586dc2f7dc5843b0ba11e29",
-				"dweb:/ipfs/Qme11E3vD7jeBoYM8pgrvgdh6tKv7R2ZFz4dizx63cyx6a"
+				"bzz-raw://f4605fd671cc3bcbb63ec1684b725ffbe96789e8f4c716c729c35ceddbec61cf",
+				"dweb:/ipfs/QmWtwTPcwQH82afHcRFe3nYcjjWRWoBefcJqRATHiiinoY"
 			]
 		}
 	},
